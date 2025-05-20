@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { recipeData } from "./data";
+import recipeData from './data';
 import CategoryList from "./CategoryList";
 import RecipeList from "./RecipeList";
 import VideoPlayer from "./VideoPlayer";
