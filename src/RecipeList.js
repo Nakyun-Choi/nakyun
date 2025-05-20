@@ -6,12 +6,11 @@ function RecipeList({ recipes }) {
       <h2>상품 목록</h2>
       {recipes.map((recipe, index) => (
         <div key={index}>
-          <button>{recipe.name}</button> {/* ← 'name' 사용 */}
+          <button>{recipe.name}</button>
         </div>
       ))}
     </div>
   );
 }
-
 
 export default RecipeList;
