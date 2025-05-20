@@ -1,33 +1,20 @@
-import React, { useState } from "react";
-import recipeData from './data';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import CategoryList from "./CategoryList";
 import RecipeList from "./RecipeList";
+import ProductPage from "./ProductPage";
 import BackButton from "./BackButton";
+import recipeData from "./data";
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  let content;
-
-  if (selectedCategory) {
-    content = (
-      <RecipeList
-        recipes={recipeData[selectedCategory]}
-      />
-    );
-  } else {
-    content = (
-      <CategoryList
-        categories={Object.keys(recipeData)}
-        onSelect={(category) => setSelectedCategory(category)}
-      />
-    );
-  }
-
   return (
     <>
       <BackButton />
-      {content}
+      <Routes>
+        <Route path="/" element={<CategoryList categories={Object.keys(recipeData)} />} />
+        <Route path="/category/:category" element={<RecipeList data={recipeData} />} />
+        <Route path="/product/:name" element={<ProductPage />} />
+      </Routes>
     </>
   );
 }

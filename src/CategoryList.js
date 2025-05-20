@@ -1,13 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function CategoryList({ categories, onSelect }) {
+function CategoryList({ categories }) {
   return (
     <div>
-      <h2>카테고리를 선택하세요</h2>
+      <h2>카테고리</h2>
       {categories.map((category) => (
-        <button key={category} onClick={() => onSelect(category)} style={{ margin: "10px" }}>
-          {category}
-        </button>
+        <div key={category}>
+          <Link to={`/category/${encodeURIComponent(category)}`}>
+            <button>{category}</button>
+          </Link>
+        </div>
       ))}
     </div>
   );

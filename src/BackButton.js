@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +10,7 @@ const BackButton = () => {
       style={{
         position: 'fixed',
         top: '10px',
-        left: '10px',
+        right: '10px',
         zIndex: 1000,
         padding: '8px 16px',
         fontSize: '14px',

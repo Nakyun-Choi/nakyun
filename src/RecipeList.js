@@ -1,32 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { useParams, Link } from "react-router-dom";
 
-function RecipeList({ recipes }) {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleClick = (name) => {
-    const fileName = encodeURIComponent(name) + ".png"; // 정확한 이름 사용
-    setSelectedImage("/images/" + fileName);
-  };
+function RecipeList({ data }) {
+  const { category } = useParams();
+  const recipes = data[category] || [];
 
   return (
     <div>
-      <h2>상품 목록</h2>
+      <h2>{category} 상품 목록</h2>
       {recipes.map((recipe, index) => (
         <div key={index}>
-          <button onClick={() => handleClick(recipe.name)}>
-            {recipe.name}
-          </button>
+          <Link to={`/product/${encodeURIComponent(recipe.name)}`}>
+            <button>{recipe.name}</button>
+          </Link>
         </div>
       ))}
-      {selectedImage && (
-        <div style={{ marginTop: "20px" }}>
-          <img
-            src={selectedImage}
-            alt="선택된 이미지"
-            style={{ maxWidth: "300px", border: "1px solid #ccc", padding: "8px" }}
-          />
-        </div>
-      )}
     </div>
   );
 }
