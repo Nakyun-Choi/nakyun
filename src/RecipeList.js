@@ -3,10 +3,10 @@ import React from "react";
 function RecipeList({ recipes, onSelect }) {
   return (
     <div>
-      <h2>레시피 목록</h2>
-      {recipes.map((recipe) => (
-        <div key={recipe.title}>
-          <button onClick={() => onSelect(recipe.videoUrl)}>{recipe.title}</button>
+      <h2>상품 목록</h2>
+      {recipes.map((recipe, index) => (
+        <div key={index}>
+          <button>{recipe.name}</button>
         </div>
       ))}
     </div>

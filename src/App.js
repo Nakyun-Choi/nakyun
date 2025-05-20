@@ -3,29 +3,37 @@ import recipeData from './data';
 import CategoryList from "./CategoryList";
 import RecipeList from "./RecipeList";
 import VideoPlayer from "./VideoPlayer";
+import BackButton from "./BackButton"; // ✅ 뒤로가기 버튼 추가
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  if (selectedVideo) {
-    return <VideoPlayer videoUrl={selectedVideo} onBack={() => setSelectedVideo(null)} />;
-  }
+  let content;
 
-  if (selectedCategory) {
-    return (
+  if (selectedVideo) {
+    content = <VideoPlayer videoUrl={selectedVideo} onBack={() => setSelectedVideo(null)} />;
+  } else if (selectedCategory) {
+    content = (
       <RecipeList
         recipes={recipeData[selectedCategory]}
         onSelect={(videoUrl) => setSelectedVideo(videoUrl)}
       />
     );
+  } else {
+    content = (
+      <CategoryList
+        categories={Object.keys(recipeData)}
+        onSelect={(category) => setSelectedCategory(category)}
+      />
+    );
   }
 
   return (
-    <CategoryList
-      categories={Object.keys(recipeData)}
-      onSelect={(category) => setSelectedCategory(category)}
-    />
+    <>
+      <BackButton />
+      {content}
+    </>
   );
 }
 
