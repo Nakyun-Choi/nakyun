@@ -6,9 +6,16 @@ function ProductPage() {
   const imagePath = `/images/${encodeURIComponent(name)}.png`;
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <img src={imagePath} alt={name} style={{ maxWidth: "300px" }} />
+    <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
+      <img
+        src={imagePath}
+        alt={name}
+        style={{
+          width: "100vw",
+          height: "100vh",
+          objectFit: "cover",
+        }}
+      />
     </div>
   );
 }
